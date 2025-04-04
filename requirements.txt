@@ -1,0 +1,6 @@
+pytest-playwright
+playwright
+discord.py
+python-dotenv
+PyYAML
+pytest
