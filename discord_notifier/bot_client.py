@@ -18,7 +18,7 @@ class MyClient(discord.Client):
         logger.info(f"Logged on as {self.user}!")
         channel = self.get_channel(DISCORD_CHANNEL_ID)
         logger.info(f"Channel: {channel}")
-        timer = Timer(rewind=timedelta(days=1))
+        timer = Timer()
         locked_chapters: list[Chapter] = []
         while True:
             chapter_list: list[Chapter] = get_manhwa_updates(
