@@ -5,7 +5,7 @@ from configs import DISCORD_TOKEN, DISCORD_CHANNEL_ID
 from debug.debug_log import logger
 from manhwa_checker.main import get_manhwa_updates
 from manhwa_checker.timer import Timer
-from datetime import timedelta
+from datetime import datetime
 from manhwa_checker.pages.asura import Chapter
 import random
 
@@ -21,6 +21,7 @@ class MyClient(discord.Client):
         timer = Timer()
         locked_chapters: list[Chapter] = []
         while True:
+            logger.info(f"Checking at {datetime.now()}")
             chapter_list: list[Chapter] = get_manhwa_updates(
                 timer=timer, locked_chapters=locked_chapters
             )
