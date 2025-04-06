@@ -1,7 +1,6 @@
 import pytest
-from manhwa_checker.pages.asura import AsuraPage
 import manhwa_checker.main
-from manhwa_checker.pages.asura import AsuraPage, Chapter
+from manhwa_checker.pages.asura import Chapter
 from manhwa_checker.timer import Timer
 from datetime import timedelta
 from mock_objects.mock_chapter import MockChapter
