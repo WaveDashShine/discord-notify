@@ -6,7 +6,7 @@ pip install -r requirements.txt
 Run with virtual environment in terminal
 - if using pycharm then venv should be in repo root:
 ```
-<path to repo>/venv/bin/python3 botclient.py
+<path to repo>/venv/bin/python3 discord_notifier.py
 ```
 
 ### .env file setup
