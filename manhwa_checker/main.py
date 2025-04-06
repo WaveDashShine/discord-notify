@@ -27,12 +27,12 @@ def get_manhwa_updates(timer: Timer, locked_chapters: list[Chapter]) -> list[Cha
 def get_latest_chapters() -> list[Chapter]:
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=not IS_DEBUG)
-    context = browser.new_context()
-    page = context.new_page()
-    asura = AsuraPage(page=page)
-    page.goto(MANHWA_CONFIG.asura.url)
-    latest_chapters = asura.get_latest_chapters()
-    browser.close()
+        context = browser.new_context()
+        page = context.new_page()
+        asura = AsuraPage(page=page)
+        page.goto(MANHWA_CONFIG.asura.url)
+        latest_chapters = asura.get_latest_chapters()
+        browser.close()
     return latest_chapters
 
 
