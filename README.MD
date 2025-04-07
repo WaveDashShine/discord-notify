@@ -28,3 +28,7 @@ asura:
     - title 2
 ```
 
+### debug
+
+- see debug log under `debug/debug.log`
+- `manhwa_checker/main.py` is runnable separately and uses headed chromium playwright by default
