@@ -36,7 +36,7 @@ async def send_message(chapter_list: list[Chapter]):
 
 
 def main():
-    timer = Timer()
+    timer = Timer()  # instantiate based on log time
     locked_chapters: list[Chapter] = []
     while True:
         logger.info(f"Checking at {datetime.now()}")
@@ -48,9 +48,9 @@ def main():
                 logger.info(f"New chapters: {chapter_list}")
                 loop = asyncio.get_event_loop()
                 loop.run_until_complete(send_message(chapter_list))
-                timer = Timer()
         except PlaywrightTimeoutError as e:
             logger.error(e)
+        timer = Timer()
         polling_rate_seconds = 60 * POLLING_RATE
         time_to_sleep: int = random.randrange(
             start=int(polling_rate_seconds * 0.9), stop=int(polling_rate_seconds * 1.1)
