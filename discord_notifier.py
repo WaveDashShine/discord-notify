@@ -45,6 +45,7 @@ def main():
                 timer=timer, locked_chapters=locked_chapters
             )
             if chapter_list:
+                logger.info(f"Locked chapters: {locked_chapters}")
                 logger.info(f"New chapters: {chapter_list}")
                 loop = asyncio.get_event_loop()
                 loop.run_until_complete(send_message(chapter_list))

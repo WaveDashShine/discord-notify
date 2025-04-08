@@ -22,6 +22,10 @@ class Chapter:
     def __str__(self):
         return f"{self.title}: Chapter {self.number} - {self.time_available}"
 
+    def __repr__(self):
+        # printing list
+        return str(self)
+
     def __eq__(self, other):
         if not isinstance(other, Chapter):
             return NotImplemented
