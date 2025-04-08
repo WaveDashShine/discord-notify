@@ -3,7 +3,7 @@ import manhwa_checker.main
 from manhwa_checker.pages.asura import Chapter
 from manhwa_checker.timer import Timer
 from datetime import timedelta
-from mock_objects.mock_chapter import MockChapter
+from tests.mock_objects.mock_chapter import MockChapter
 
 NEW_CHAPTER = MockChapter(title="New Chapter", number="1", time_available="6 hours ago")
 OLD_CHAPTER = MockChapter(title="old chapter", number="3", time_available="3 days ago")
