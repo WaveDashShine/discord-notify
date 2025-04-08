@@ -107,3 +107,17 @@ class TestManhwaUpdates:
             timer=timer, locked_chapters=locked_chapters
         )
         assert OLD_CHAPTER in chapter_list
+
+    def test_locked_chapters_not_added_again(self, timer):
+        """
+        locked chapters shouldn't be added more than once
+        """
+        locked_chapters: list[Chapter] = []
+        manhwa_checker.main.get_manhwa_updates(
+            timer=timer, locked_chapters=locked_chapters
+        )
+        manhwa_checker.main.get_manhwa_updates(
+            timer=timer, locked_chapters=locked_chapters
+        )
+        locked_chapter = [c for c in locked_chapters if c == LOCKED_CHAPTER]
+        assert len(locked_chapter) == 1

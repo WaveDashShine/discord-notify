@@ -12,7 +12,7 @@ def get_manhwa_updates(timer: Timer, locked_chapters: list[Chapter]) -> list[Cha
     latest_chapters: list[Chapter] = get_latest_chapters()
     available_chapters = []
     for chapter in latest_chapters:
-        if chapter.is_locked:
+        if chapter.is_locked and chapter not in locked_chapters:
             locked_chapters.append(chapter)
             continue
         if timer.is_new_since_start_time(time_string=chapter.time_available):
@@ -20,7 +20,6 @@ def get_manhwa_updates(timer: Timer, locked_chapters: list[Chapter]) -> list[Cha
         elif chapter in locked_chapters:
             available_chapters.append(chapter)
             locked_chapters.remove(chapter)
-    # TODO: flame
     return available_chapters
 
 
