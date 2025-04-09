@@ -3,15 +3,12 @@ import random
 import asyncio
 import discord
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
-from configs import DISCORD_TOKEN, DISCORD_CHANNEL_ID
+from configs import DISCORD_TOKEN, DISCORD_CHANNEL_ID, MANHWA_CONFIG
 from debug.debug_log import logger
 from manhwa_checker.main import get_manhwa_updates
-from manhwa_checker.timer import Timer
+from manhwa_checker.timer import Timer, get_timedelta_from_str
 from datetime import datetime
 from manhwa_checker.pages.asura import Chapter
-
-
-POLLING_RATE = 60  # minutes
 
 
 async def send_message(chapter_list: list[Chapter]):
@@ -35,6 +32,17 @@ async def send_message(chapter_list: list[Chapter]):
     # await client.run(DISCORD_TOKEN)  # blocking
 
 
+def wait_for_next_poll_time():
+    polling_rate_seconds = get_timedelta_from_str(
+        MANHWA_CONFIG.asura.interval
+    ).total_seconds()
+    time_to_sleep: int = random.randrange(
+        start=int(polling_rate_seconds * 0.9), stop=int(polling_rate_seconds * 1.1)
+    )
+    logger.info(f"sleeping for {time_to_sleep} seconds")
+    time.sleep(time_to_sleep)
+
+
 def main():
     timer = Timer()  # instantiate based on log time
     locked_chapters: list[Chapter] = []
@@ -52,12 +60,7 @@ def main():
         except PlaywrightTimeoutError as e:
             logger.error(e)
         timer = Timer()
-        polling_rate_seconds = 60 * POLLING_RATE
-        time_to_sleep: int = random.randrange(
-            start=int(polling_rate_seconds * 0.9), stop=int(polling_rate_seconds * 1.1)
-        )
-        logger.info(f"sleeping for {time_to_sleep} seconds")
-        time.sleep(time_to_sleep)
+        wait_for_next_poll_time()
 
 
 if __name__ == "__main__":

@@ -21,6 +21,7 @@ class SiteKeys(StrEnum):
 
 class SiteDataKeys(StrEnum):
     URL = "url"
+    INTERVAL = "interval"  # e.g. time string: 45 min
     TITLE_LIST = "manhwa"
 
 
@@ -29,6 +30,7 @@ class SiteData:
     def __init__(self, yaml_data: dict):
         self.url: str = yaml_data.get(SiteDataKeys.URL)
         self.titles: list = yaml_data.get(SiteDataKeys.TITLE_LIST)
+        self.interval: str = yaml_data.get(SiteDataKeys.INTERVAL) or "45 min"
         self.validate_data()
 
     def validate_data(self):

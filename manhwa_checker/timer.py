@@ -1,6 +1,17 @@
 from datetime import datetime, timedelta
 
 
+def get_timedelta_from_str(time_string: str) -> timedelta:
+    number = int("".join([c for c in time_string if c.isdigit()]))
+    if "hour" in time_string.lower():
+        return timedelta(hours=number)
+    if "min" in time_string.lower():
+        return timedelta(minutes=number)
+    if "day" in time_string.lower():
+        return timedelta(days=number)
+    raise NotImplemented(f"No conversion from {time_string} to timedelta")
+
+
 class Timer:
 
     def __init__(self, rewind: timedelta = None, forward: timedelta = None):
@@ -19,12 +30,5 @@ class Timer:
         return self.current_time - self.start_time
 
     def is_new_since_start_time(self, time_string: str) -> bool:
-        number = int("".join([c for c in time_string if c.isdigit()]))
-        time_difference = None
-        if "hour" in time_string.lower():
-            time_difference = timedelta(hours=number)
-        if "min" in time_string.lower():
-            time_difference = timedelta(minutes=number)
-        if "day" in time_string.lower():
-            time_difference = timedelta(days=number)
+        time_difference = get_timedelta_from_str(time_string=time_string)
         return self.elapsed_time > time_difference
