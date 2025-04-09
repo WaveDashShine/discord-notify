@@ -16,12 +16,12 @@ ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 class SiteKeys(StrEnum):
     ASURA = "asura"
-    FLAME = "flame"
+    FLAME = "flame"  # unsupported
 
 
 class SiteDataKeys(StrEnum):
     URL = "url"
-    INTERVAL = "interval"  # e.g. time string: 45 min
+    INTERVAL = "interval"  # polling interval e.g. time string: 45 min
     TITLE_LIST = "manhwa"
 
 
