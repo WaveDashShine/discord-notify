@@ -11,7 +11,7 @@ formatter = logging.Formatter(
 )
 
 file_handler = logging.FileHandler(
-    filename=os.path.join(ROOT_PATH, "debug/debug.log"), encoding="utf-8"
+    filename=os.path.join(ROOT_PATH, "debug/debug.log"), encoding="utf-8", mode="w+"
 )
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(formatter)
