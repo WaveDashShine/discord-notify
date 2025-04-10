@@ -34,22 +34,22 @@ class TestManhwaUpdates:
         )
 
     def test_get_new_chapters(self, timer):
-        chapter_list = manhwa_checker.main.get_manhwa_updates(
+        available_chapters = manhwa_checker.main.get_manhwa_updates(
             timer=timer, locked_chapters=[]
         )
-        assert NEW_CHAPTER in chapter_list
+        assert NEW_CHAPTER in available_chapters
 
     def test_old_chapters_are_not_considered_new(self, timer):
-        chapter_list = manhwa_checker.main.get_manhwa_updates(
+        available_chapters = manhwa_checker.main.get_manhwa_updates(
             timer=timer, locked_chapters=[]
         )
-        assert OLD_CHAPTER not in chapter_list
+        assert OLD_CHAPTER not in available_chapters
 
     def test_locked_chapters_are_not_considered_new(self, timer):
-        chapter_list = manhwa_checker.main.get_manhwa_updates(
+        available_chapters = manhwa_checker.main.get_manhwa_updates(
             timer=timer, locked_chapters=[]
         )
-        assert LOCKED_CHAPTER not in chapter_list
+        assert LOCKED_CHAPTER not in available_chapters
 
     def test_locked_chapters_saved_for_later(self, timer):
         locked_chapters: list[Chapter] = []
@@ -103,10 +103,10 @@ class TestManhwaUpdates:
             time_available="public in 5 hours",
         )
         locked_chapters: list[Chapter] = [previously_locked_chapter]
-        chapter_list = manhwa_checker.main.get_manhwa_updates(
+        available_chapters = manhwa_checker.main.get_manhwa_updates(
             timer=timer, locked_chapters=locked_chapters
         )
-        assert OLD_CHAPTER in chapter_list
+        assert OLD_CHAPTER in available_chapters
 
     def test_locked_chapters_not_added_again(self, timer):
         """
@@ -121,3 +121,6 @@ class TestManhwaUpdates:
         )
         locked_chapter = [c for c in locked_chapters if c == LOCKED_CHAPTER]
         assert len(locked_chapter) == 1
+
+    # TODO: test object created at 1 hour 59 min ago still displays 1 hour
+    #  test that this chapter is treated as new
