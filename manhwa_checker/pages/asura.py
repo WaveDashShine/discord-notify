@@ -24,7 +24,7 @@ class Chapter:
 
     def __repr__(self):
         # printing list
-        return str(self)
+        return f"\n\t{str(self)}"
 
     def __eq__(self, other):
         if not isinstance(other, Chapter):
