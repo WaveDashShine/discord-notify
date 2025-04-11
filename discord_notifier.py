@@ -52,7 +52,8 @@ def main():
             available_chapters: list[Chapter] = get_manhwa_updates(
                 timer=timer, locked_chapters=locked_chapters
             )
-            logger.info(f"Locked chapters: {locked_chapters}")
+            if locked_chapters:
+                logger.info(f"Locked chapters: {locked_chapters}")
             if available_chapters:
                 logger.info(f"New chapters: {available_chapters}")
                 loop = asyncio.get_event_loop()
