@@ -1,5 +1,3 @@
-from operator import index
-
 from playwright.sync_api import Page, Locator
 from configs import MANHWA_CONFIG
 
