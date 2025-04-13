@@ -27,7 +27,7 @@ DISCORD_CHANNEL_ID=<discord channel to post to>
 ```yaml
 asura:
   url: https://url-of-manhwa-website.com
-  interval: 1 hour
+  interval: 45 min
   # punctuation marks may not be as expected '
   manhwa:
     - title 1
