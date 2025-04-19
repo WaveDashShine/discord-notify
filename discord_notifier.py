@@ -46,6 +46,7 @@ def wait_for_next_poll_time():
 def main():
     timer = Timer()  # instantiate based on log time
     locked_chapters: list[Chapter] = []
+    has_error = False
     while True:
         logger.info(f"Checking at {datetime.now()}")
         try:
@@ -60,7 +61,9 @@ def main():
                 loop.run_until_complete(send_message(available_chapters))
         except PlaywrightTimeoutError as e:
             logger.error(e)
-        timer = Timer()
+            has_error = True
+        if not has_error:
+            timer = Timer()
         wait_for_next_poll_time()
 
 
