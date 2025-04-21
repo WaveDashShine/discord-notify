@@ -9,6 +9,10 @@ def get_timedelta_from_str(time_string: str) -> timedelta:
         return timedelta(minutes=number)
     if "day" in time_string.lower():
         return timedelta(days=number)
+    if "week" in time_string.lower():
+        return timedelta(weeks=number)
+    if "month" in time_string.lower():
+        return timedelta(weeks=number * 4)
     raise NotImplementedError(f"No conversion from {time_string} to timedelta")
 
 
