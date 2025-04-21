@@ -124,3 +124,5 @@ class TestManhwaUpdates:
 
     # TODO: test object created at 1 hour 59 min ago still displays 1 hour
     #  test that this chapter is treated as new
+
+    # TODO: test error thrown and then what happens after chapter recovers - missed chapters

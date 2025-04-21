@@ -20,6 +20,14 @@ class TestTimer:
         timer = Timer(rewind=timedelta(hours=25))
         assert timer.is_new_since_start_time(time_string="1 day ago")
 
+    def test_newly_available_weeks(self):
+        timer = Timer(rewind=timedelta(days=15))
+        assert timer.is_new_since_start_time(time_string="2 week ago")
+
+    def test_newly_available_months(self):
+        timer = Timer(rewind=timedelta(weeks=9))
+        assert timer.is_new_since_start_time(time_string="2 months ago")
+
     def test_rewind(self):
         delta = timedelta(seconds=60)
         timer = Timer(rewind=delta)
