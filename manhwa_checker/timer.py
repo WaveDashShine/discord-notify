@@ -9,7 +9,7 @@ def get_timedelta_from_str(time_string: str) -> timedelta:
         return timedelta(minutes=number)
     if "day" in time_string.lower():
         return timedelta(days=number)
-    raise NotImplemented(f"No conversion from {time_string} to timedelta")
+    raise NotImplementedError(f"No conversion from {time_string} to timedelta")
 
 
 class Timer:
