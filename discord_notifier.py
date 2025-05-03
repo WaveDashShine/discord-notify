@@ -46,8 +46,8 @@ def wait_for_next_poll_time():
 def main():
     timer = Timer()  # instantiate based on log time
     locked_chapters: list[Chapter] = []
-    has_error = False
     while True:
+        has_error = False
         logger.info(f"Checking at {datetime.now()}")
         try:
             available_chapters: list[Chapter] = get_manhwa_updates(
